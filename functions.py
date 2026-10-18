@@ -20,7 +20,7 @@ def type_text(delay, text):
             highlight=False,
         )
 
-        #time.sleep(delay)
+        time.sleep(delay)
 
     console.print()
 
