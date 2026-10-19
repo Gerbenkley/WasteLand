@@ -1,11 +1,14 @@
 import random
 import sys
+
 import questionary
-import theme
+
 import items
+import theme
 from factory import FACTORY_MACHINES
-from functions import type_text, clear_console
+from functions import clear_console, type_text
 from locations import LOCATIONS, RISKS
+
 
 def roll_damage(player):
     health = player["health"]
@@ -67,7 +70,7 @@ def scavenge(player):
         ],
         style=theme.custom_style,
     ).ask()
-    print("")
+    print()
 
     if chosen_location == "Head back":
         clear_console()
@@ -79,7 +82,7 @@ def scavenge(player):
     type_text(0.02, f"{location["description"]}")
     type_text(0.06, f"The risk is [bold red]{location["risk"]}[/bold red] and there is [yellow]{location["radiation"]}[/yellow] radiation.")
     type_text(0.02, f"It takes [purple]{location["scavenge_time"]} seconds[/purple] to scavenge.")
-    type_text(0.04, f"\nLoot contains:")
+    type_text(0.04, "\nLoot contains:")
     for loot, amount in location["loot"].items():
         type_text(0.01, f"[blue]{loot}[/blue] x[green]{amount}[/green]")
 
@@ -95,7 +98,7 @@ def scavenge(player):
         ],
         style=theme.custom_style,
     ).ask()
-    print("")
+    print()
 
     if yes_no == "Not really...":
         clear_console()
@@ -179,7 +182,7 @@ def use_item(player, item):
         hunger_reduced = hunger - player["health"]["hunger"]
         
         type_text(0.02, f"You eat some {item}. Your [yellow]hunger[/yellow] decreased by {hunger_reduced}.")
-        type_text(0.02, f"It tastes like the [red]empty wasteland[/red] you find yourself wandering in.")
+        type_text(0.02, "It tastes like the [red]empty wasteland[/red] you find yourself wandering in.")
 
     if items.ITEMS[item]["effect"] == "reduce_thirst":
         if thirst <= 0:
@@ -190,7 +193,7 @@ def use_item(player, item):
         thirst_reduced = thirst - player["health"]["thirst"]
         
         type_text(0.02, f"You drink some {item}. Your [yellow]thirst[/yellow] decreased by {thirst_reduced}.")
-        type_text(0.02, f"It tastes like the [red]empty wasteland[/red] you find yourself wandering in.")
+        type_text(0.02, "It tastes like the [red]empty wasteland[/red] you find yourself wandering in.")
 
     if items.ITEMS[item]["effect"] == "reduce_radiation":
         if radiation <= 0:
@@ -199,7 +202,7 @@ def use_item(player, item):
         player["inventory"][item] -= 1
         player["health"]["radiation"] = 0
 
-        type_text(0.02, f"You inject the [yellow]RadRelief[/yellow] into your veins. It is invigorating. You feel [bold green]normal[/bold green].")
+        type_text(0.02, "You inject the [yellow]RadRelief[/yellow] into your veins. It is invigorating. You feel [bold green]normal[/bold green].")
 
 def sleep(player):
     hitpoints = player["health"]["hitpoints"]
@@ -218,7 +221,7 @@ def sleep(player):
 
         health_regained = player["health"]["hitpoints"] - hitpoints
 
-        type_text(0.02, f"You go to sleep. You also wake up with [yellow]20[/yellow] fewer [yellow]bottle_caps[/yellow]...")
+        type_text(0.02, "You go to sleep. You also wake up with [yellow]20[/yellow] fewer [yellow]bottle_caps[/yellow]...")
         type_text(0.02, f"You regained [red]{health_regained} health[/red].")
     
 def status(player):
@@ -293,7 +296,7 @@ def buy_machine(player, machine):
     factory_space = factory_level * 0 + 15
 
     count = 0
-    for machines, amount in factory.items():
+    for machines, amount in factory.values():
         count += amount
     if count >= factory_space:
         type_text(0.02, "You don't have any space for more [purple]{machine}[/purple].")
@@ -386,7 +389,7 @@ def nextAction(player):
         ],
         style=theme.custom_style,
     ).ask().strip().lower()
-    print("")
+    print()
     
     if action == "leave":
         type_text(0.08, "Goodbye [red]scavenger[/red]...")

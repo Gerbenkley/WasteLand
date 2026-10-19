@@ -1,6 +1,6 @@
 import actions
 import player
-from functions import type_text, clear_console
+from functions import clear_console, type_text
 
 clear_console()
 player = player.create_player()
