@@ -1,14 +1,13 @@
-import actions
-import player
-from functions import clear_console, type_text
+from player import Player, clear_console, initLoop, nextAction, type_text
 
 clear_console()
-player = player.create_player()
+
 type_text(0.04, "What is your name, [red]scavenger?[/red] ")
-player["name"] = input()
+init_player_name = input()
 clear_console()
-type_text(0.04, f"Welcome to the Wasteland, [red]{player['name']}[/red]!\n")
+player = Player(init_player_name, 0, 0)
+type_text(0.04, f"Welcome to the Wasteland, [red]{player.name}[/red]!\n")
 
 while True:
-    actions.initLoop(player)    
-    actions.nextAction(player)
+    initLoop(player)    
+    nextAction(player)

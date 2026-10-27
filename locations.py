@@ -1,3 +1,10 @@
+DIRECTIONS = [
+    ("On your [bold blue]left[/bold blue]", 0.04),
+    ("On your [bold blue]right[/bold blue]", 0.06),
+    ("Straight [bold blue]ahead[/bold blue]", 0.04),
+]
+
+
 RISKS = {
     "low": {
         "damage": 3,
