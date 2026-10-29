@@ -14,7 +14,7 @@ from factory import FACTORY_MACHINES
 from items import CONSUMABLE_EFFECTS
 from locations import DIRECTIONS, LOCATIONS, RISKS
 
-BASE_HEALTH = 100
+BASE_HEALTH = 10000
 HEALTH_PER_LEVEL = 10
 FIRST_LEVEL_XP = 500
 XP_STEP_PER_LEVEL = 500
@@ -45,7 +45,7 @@ def type_text(delay, text):
             highlight=False,
         )
 
-        time.sleep(delay)
+        #time.sleep(delay)
 
     console.print()
 
@@ -376,7 +376,7 @@ class Player(Character):
             actually_reduced = current - self.health[need]
 
             type_text(0.02, effect["message"].format(item=item, amount=actually_reduced))
-            
+
         if "flavor" in effect:
             type_text(0.02, effect["flavor"])
 
